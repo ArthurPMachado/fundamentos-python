@@ -8,6 +8,13 @@ def add_task(tasks: list, task_name):
   print(f'Tasks {task_name} was added successfully')
   return
 
+def list_tasks(tasks: list):
+  print("\nTasks List: ")
+  for index, task in enumerate(tasks, start=1):
+    status = '✔' if task['completed'] else '✘'
+    task_name = task['task']
+    print(f'{index}. [{status}] {task_name}')
+
 tasks = []
 while True:
   print('\n Todo List Management Menu:')
@@ -23,6 +30,8 @@ while True:
   if option == 1:
     task_name = input('Enter task name:')
     add_task(tasks, task_name)
+  elif option == 2:
+    list_tasks(tasks)
   elif option == 6:
     break
 
