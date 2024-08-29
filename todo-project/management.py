@@ -17,7 +17,7 @@ def list_tasks(tasks: list):
 
   return
 
-def update_task_name(tasks, task_index, new_task_name):
+def update_task_name(tasks: list, task_index, new_task_name):
   adjust_index = int(task_index) - 1
 
   if adjust_index >= 0 and adjust_index < len(tasks):
@@ -29,7 +29,7 @@ def update_task_name(tasks, task_index, new_task_name):
   print('Invalid task index')
   return
 
-def complete_task(tasks, task_index):
+def complete_task(tasks: list, task_index):
   adjust_index = int(task_index) - 1
 
   if adjust_index >= 0 and adjust_index < len(tasks):
@@ -40,6 +40,17 @@ def complete_task(tasks, task_index):
   
   print('Invalid task index')
   return
+
+def delete_completed_tasks(tasks: list):
+  tasks_not_completed = []
+
+  for task in tasks:
+    if not task['completed']:
+      tasks_not_completed.append(task)
+
+  print('Completed tasks deleted')
+
+  return tasks_not_completed
 
 tasks = []
 while True:
@@ -70,6 +81,11 @@ while True:
     list_tasks(tasks)
     task_index = input('Enter tasks index to be completed: ')
     complete_task(tasks, task_index)
+
+  elif option == 5:
+    tasks_not_completed = delete_completed_tasks(tasks)
+    tasks = tasks_not_completed
+    list_tasks(tasks)
 
   elif option == 6:
     break
