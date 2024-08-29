@@ -15,6 +15,8 @@ def list_tasks(tasks: list):
     task_name = task['task']
     print(f'{index}. [{status}] {task_name}')
 
+  return
+
 def update_task_name(tasks, task_index, new_task_name):
   adjust_index = int(task_index) - 1
 
@@ -25,6 +27,19 @@ def update_task_name(tasks, task_index, new_task_name):
     return
   
   print('Invalid task index')
+  return
+
+def complete_task(tasks, task_index):
+  adjust_index = int(task_index) - 1
+
+  if adjust_index >= 0 and adjust_index < len(tasks):
+    tasks[adjust_index]['completed'] = True
+
+    print(f'Task {task_index} marked as completed')
+    return
+  
+  print('Invalid task index')
+  return
 
 tasks = []
 while True:
@@ -41,13 +56,21 @@ while True:
   if option == 1:
     task_name = input('Enter task name: ')
     add_task(tasks, task_name)
+
   elif option == 2:
     list_tasks(tasks)
+
   elif option == 3:
     list_tasks(tasks)
     task_index = input('Enter tasks index to be updated: ')
     new_name = input('Enter new task name: ')
     update_task_name(tasks, task_index, new_name)
+  
+  elif option == 4:
+    list_tasks(tasks)
+    task_index = input('Enter tasks index to be completed: ')
+    complete_task(tasks, task_index)
+
   elif option == 6:
     break
 
